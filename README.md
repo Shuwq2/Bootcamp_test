@@ -15,6 +15,9 @@ ecrire_courses_propres : Cette fonction produit un fichier CSV finalisé en insc
 
 02-java/src/                 maillon 2 — 
 
+pointsPourPosition
+Cette méthode permet de déterminer le nombre de points gagnés selon le classement d'un pilote. Une condition if vérifie d'abord si la position se situe dans le Top 10 (comprise entre 1 et 10). Si c'est le cas, elle récupère le score correspondant dans le tableau BAREME. L'index utilisé est position - 1 afin de compenser le fait que les tableaux commencent à l'indice 0 en Java (la 1ère place correspond à l'index 0). Si le pilote est classé au-delà de la 10ème place ou n'a pas terminé, la méthode retourne la valeur par défaut 0.
+
 classementPilotes
 Pour consolider les statistiques, une HashMap fait correspondre l'identité de chaque pilote à un objet Resultat. Une boucle for se charge d'additionner les points et les podiums accumulés durant la saison. Ces données sont par la suite extraites vers une ArrayList pour y être ordonnées avec la fonction sort(). Le tri est géré par un comparateur spécifique, rédigé sous la forme d'une expression lambda, qui classe les concurrents selon l'ordre décroissant de leurs points, suivi du nombre de victoires, des deuxièmes places, pour finir par un tri alphabétique en cas d'égalité
 
