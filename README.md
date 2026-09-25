@@ -31,6 +31,10 @@ TEST n°5 BUG - EMPLACEMENT NON TROUVÉ ALORS QU'IL EST AU BONNE ENDROIT(VU ÉGA
 trierParPoints
 Cette fonction a pour but de générer un nouveau classement sans altérer le tableau d'origine. Pour cela, elle utilise d'abord la méthode slice() qui crée une copie (un clone) de la liste. Elle enchaîne ensuite avec la méthode sort(), alimentée par une fonction fléchée agissant comme comparateur personnalisé. La logique de tri compare d'abord les scores : l'opération b.points - a.points force un tri par ordre décroissant. Si une égalité de points est détectée par la condition if, la fonction utilise alors le nombre de victoires comme second critère de départage, également par ordre décroissant (b.victoires - a.victoires).
 
+remplirTableau
+L'objectif de cette méthode est de peupler un tableau en écrasant son précédent contenu. Après avoir ciblé le conteneur et réinitialisé son innerHTML, une boucle forEach() itère sur les données. À chaque passage, elle génère un élément <tr> et lui applique l'attribut data-nom. Pour remplir cette ligne, le code exploite l'innerHTML et la syntaxe des template strings (gabarits de chaînes) pour structurer les cinq cellules d'un seul bloc, de manière beaucoup plus lisible. Les variables y sont directement injectées. Pour finir, le <tr> ainsi formaté est rattaché au corps du tableau grâce à l'instruction appendChild().
+
+
 
 secours/                     résultats de référence, en cas de blocage
 extensions/E1 à E4           les extensions et leurs tests
