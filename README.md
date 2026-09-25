@@ -24,9 +24,14 @@ Pour consolider les statistiques, une HashMap fait correspondre l'identité de c
 classementEcuries
 Ce traitement s'appuie sur un principe d'agrégation similaire, à la différence que la clé de la HashMap est ici le nom de l'équipe. Une boucle se charge de cumuler les points et les victoires obtenus par les pilotes d'une même écurie. Pour ordonner la liste finale, on retrouve la méthode sort() couplée à une expression lambda équivalente, assurant ainsi des critères de classement strictement identiques à ceux des pilotes.
 
+TEST n°5 BUG - EMPLACEMENT NON TROUVÉ ALORS QU'IL EST AU BONNE ENDROIT(VU ÉGALEMENT PAR LE PROF)
+
+03-js/                       maillon 3 — app.js 
+
+trierParPoints
+Cette fonction a pour but de générer un nouveau classement sans altérer le tableau d'origine. Pour cela, elle utilise d'abord la méthode slice() qui crée une copie (un clone) de la liste. Elle enchaîne ensuite avec la méthode sort(), alimentée par une fonction fléchée agissant comme comparateur personnalisé. La logique de tri compare d'abord les scores : l'opération b.points - a.points force un tri par ordre décroissant. Si une égalité de points est détectée par la condition if, la fonction utilise alors le nombre de victoires comme second critère de départage, également par ordre décroissant (b.victoires - a.victoires).
 
 
-03-js/                       maillon 3 — app.js à compléter, index.html à ouvrir
 secours/                     résultats de référence, en cas de blocage
 extensions/E1 à E4           les extensions et leurs tests
 formateur/                   corrigés, grille, générateur — À RETIRER avant distribution
