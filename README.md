@@ -34,7 +34,8 @@ Cette fonction a pour but de générer un nouveau classement sans altérer le ta
 remplirTableau
 L'objectif de cette méthode est de peupler un tableau en écrasant son précédent contenu. Après avoir ciblé le conteneur et réinitialisé son innerHTML, une boucle forEach() itère sur les données. À chaque passage, elle génère un élément <tr> et lui applique l'attribut data-nom. Pour remplir cette ligne, le code exploite l'innerHTML et la syntaxe des template strings (gabarits de chaînes) pour structurer les cinq cellules d'un seul bloc, de manière beaucoup plus lisible. Les variables y sont directement injectées. Pour finir, le <tr> ainsi formaté est rattaché au corps du tableau grâce à l'instruction appendChild().
 
-
+marquerPodium
+L'objectif de cette méthode est de styliser les trois meilleures entrées du tableau. Après avoir sélectionné le corps du tableau, elle capture toutes ses lignes avec querySelectorAll("tr") pour itérer dessus via un forEach(). En se basant sur l'index de chaque itération, un bloc conditionnel détermine l'action à mener : la classe CSS "podium" est attachée via classList.add() pour les trois premiers éléments (index de 0 à 2), et elle est systématiquement retirée pour tous les éléments suivants à l'aide de classList.remove().
 
 secours/                     résultats de référence, en cas de blocage
 extensions/E1 à E4           les extensions et leurs tests
