@@ -8,7 +8,9 @@
    ========================================================================= */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Classement {
 
@@ -25,36 +27,51 @@ public class Classement {
         return 0;
     }
 
-    // 2. classementPilotes(lignes) : un Resultat par pilote, avec ses points,
+   // 2. classementPilotes(lignes) : un Resultat par pilote, avec ses points,
     //    ses victoires (position 1) et ses 2e places, trié par :
     //    points décroissants, puis victoires, puis 2e places, puis nom (A→Z).
     public static List<Resultat> classementPilotes(List<Ligne> lignes) {
-        ArrayList<Resultat> resultats = new ArrayList<>();
-        for (Ligne ligne : lignes) {
-            String pilote = ligne.pilote();
-            String ecurie = ligne.ecurie();
-            int position = ligne.position();
-            int points = pointsPourPosition(position);
-            resultats.add(new Resultat(pilote, ecurie, points));
-        }
-        return resultats;
+        Map<String, Resultat> pilotes = new HashMap<>();
 
+        for (Ligne ligne : lignes) {
+            String nom = ligne.pilote();
+            // Le constructeur Resultat attend le nom et l'écurie
+            pilotes.putIfAbsent(nom, new Resultat(nom, ligne.ecurie()));
+            
+            Resultat res = pilotes.get(nom);
+            int pos = ligne.position();
+            
+            res.points += pointsPourPosition(pos);
+            if (pos == 1) {
+                res.victoires++;
+            } else if (pos == 2) {
+                res.deuxiemes++;
+            }
+        }
+
+        List<Resultat> classement = new ArrayList<>(pilotes.values());
+        classement.sort((r1, r2) -> {
+            if (r1.points != r2.points) return Integer.compare(r2.points, r1.points);
+            if (r1.victoires != r2.victoires) return Integer.compare(r2.victoires, r1.victoires);
+            if (r1.deuxiemes != r2.deuxiemes) return Integer.compare(r2.deuxiemes, r1.deuxiemes);
+            return r1.nom.compareTo(r2.nom);
+        });
+
+        return classement;
     }
-    
 
     // 3. classementEcuries(pilotes) : additionne les points, victoires et
     //    2e places des pilotes de chaque écurie. Même ordre de tri.
     public static List<Resultat> classementEcuries(List<Resultat> pilotes) {
-       // A COMPLÉTER
-        return null; 
-       
+        // À COMPLÉTER
+        return null;
     }
 
     // 4. positionMoyenne(lignes, pilote) : moyenne des positions de ce pilote,
     //    ABANDONS EXCLUS, arrondie à 2 décimales. 0 s'il n'a jamais terminé.
     //    Ex. positions 1, 2 et un abandon -> 1.5
     public static double positionMoyenne(List<Ligne> lignes, String pilote) {
-        // A COMPLÉTER
+        // À COMPLÉTER
         return 0;
     }
 }

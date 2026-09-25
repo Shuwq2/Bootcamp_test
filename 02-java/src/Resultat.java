@@ -12,10 +12,6 @@ public class Resultat {
         this.ecurie = ecurie;
     }
 
-    public Resultat(String pilote, String ecurie2, int points2, int i, int j) {
-        //TODO Auto-generated constructor stub
-    }
-
     @Override
     public String toString() {
         return nom + " (" + points + " pts, " + victoires + "V)";
